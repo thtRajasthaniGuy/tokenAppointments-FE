@@ -1,6 +1,7 @@
 import React from "react";
-
+import useRedirect from "../../hooks/Redirect";
 const LandingPageHeader: React.FC = () => {
+  const { redirectTo } = useRedirect();
   return (
     <header className="bg-[#FCF8F1] bg-opacity-30">
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
@@ -89,13 +90,13 @@ const LandingPageHeader: React.FC = () => {
           </div>
 
           <a
-            href="#"
             title=""
             className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-yellow-300 hover:text-black focus:text-black focus:bg-yellow-300 font-semibold text-white bg-black rounded-full"
             role="button"
+            onClick={() => redirectTo("/login")}
           >
             {" "}
-            Join Now{" "}
+            Login{" "}
           </a>
         </div>
       </div>
