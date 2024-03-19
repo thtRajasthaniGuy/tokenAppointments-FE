@@ -7,14 +7,14 @@ const LandingPageSection: React.FC = () => {
         <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
             <p className="text-base font-semibold tracking-wider text-blue-600 uppercase">
-              A social media for learners
+              End Long Wait Times at Clinics. Streamline Operations with
+              TokenOnGo
             </p>
-            <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-8xl">
-              Connect & learn from the experts
+            <h1 className="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-6xl xl:text-4xl">
+              Long wait times at clinics are a major source of frustration for
+              both patients and doctors in India.
             </h1>
-            <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl">
-              Grow your career fast with right mentor.
-            </p>
+            <p className="mt-4 text-base text-black lg:mt-8 sm:text-xl"></p>
 
             <a
               href="#"
