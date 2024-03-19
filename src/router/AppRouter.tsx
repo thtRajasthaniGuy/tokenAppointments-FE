@@ -6,7 +6,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import LandingPage from "../pages/Landing/Landing";
-import LoginPage from "../pages/Login";
+import LoginPage from "../pages/Login/Login";
+import SignupPage from "../pages/Signup/Signup";
 const AppRouter: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,6 +24,7 @@ const AppRouter: React.FC = () => {
           element={isLoggedIn ? <Navigate to="/dashboard" /> : <LandingPage />}
         />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route
           path="/dashboard"
           element={isLoggedIn ? <LandingPage /> : <Navigate to="/" />}

@@ -1,6 +1,7 @@
 import React from "react";
-
+import useRedirect from "../../hooks/Redirect";
 const Login: React.FC = () => {
+  const { redirectTo } = useRedirect();
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -44,14 +45,6 @@ const Login: React.FC = () => {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
@@ -78,8 +71,8 @@ const Login: React.FC = () => {
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
             <a
-              href="#"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              onClick={() => redirectTo("/signup")}
             >
               Start a 7 day free trial
             </a>
