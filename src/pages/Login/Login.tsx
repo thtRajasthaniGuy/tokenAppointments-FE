@@ -1,7 +1,40 @@
 import React from "react";
 import useRedirect from "../../hooks/Redirect";
+import AxiosInstance from "../../config/axios";
+import { ApiEndPoints } from "../../constants/api-end-points";
+import { notify } from "../../helper/toast";
 const Login: React.FC = () => {
   const { redirectTo } = useRedirect();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleLogin = (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent default form submission
+
+    AxiosInstance.get(
+      `${ApiEndPoints.clinicLogin}?email=${encodeURIComponent(
+        email
+      )}&password=${encodeURIComponent(password)}`
+    )
+      .then((response: any) => {
+        console.log(response);
+        localStorage.setItem("token", response?.token);
+        localStorage.setItem("clinicId", response?.data);
+        //redirectTo("/dashboard");
+      })
+      .catch((error) => {
+        notify(error?.msg, "error");
+      });
+  };
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -17,7 +50,7 @@ const Login: React.FC = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <label
                 htmlFor="email"
@@ -27,6 +60,7 @@ const Login: React.FC = () => {
               </label>
               <div className="mt-2">
                 <input
+                  onChange={handleEmailChange}
                   id="email"
                   name="email"
                   type="email"
@@ -48,6 +82,7 @@ const Login: React.FC = () => {
               </div>
               <div className="mt-2">
                 <input
+                  onChange={handlePasswordChange}
                   id="password"
                   name="password"
                   type="password"
