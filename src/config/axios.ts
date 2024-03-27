@@ -2,13 +2,11 @@ import axios, { AxiosRequestConfig } from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AxiosInstance = axios.create({
-  baseURL: "http://172.16.0.59:4000/api/v1/",
+  baseURL: "http://172.17.0.78:4000/api/v1/",
 });
 
 AxiosInstance.interceptors.request.use(
   (config: any) => {
-    console.log("Request was sent", config);
-
     // Add a token to the request headers
     const token = localStorage.getItem("token");
     if (token) {
@@ -52,7 +50,7 @@ AxiosInstance.interceptors.response.use(
           console.error("Bad request", error.response.data);
           break;
         case 401:
-          // ClearAppValueValue();
+          console.log("401 error", error.response.data);
           localStorage.clear();
           const navigate = useNavigate();
           navigate("/login");
